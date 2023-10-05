@@ -11,12 +11,12 @@ const LeftNav = () => {
     },[])
     return (
         <div>
-            <h4>All Categories</h4>
+            <h4 className='text-start mb-4'>All Categories</h4>
             <h5>National News</h5>
-            <div className=' '>
+            <div className='ps-5 text-start'>
                 {
-                    categories.map(cat => <p  key={cat.id}>
-                        <Link className='text-decoration-none text-black'>{cat.name}</Link>
+                    categories.map(cat => <p  key={cat.id}> 
+                        <Link to={`/category/${cat.id}`} className='text-decoration-none text-black'>{cat.name}</Link>
                     </p>)
                 }
             </div>

@@ -14,12 +14,12 @@ const backgroundStyle = {
 const RightNav = () => {
     return (
         <div>
-            <h4>Login With</h4>
-            <div className='mb-3'>
-                <Button className='mb-2' variant="outline-secondary"><FaGoogle></FaGoogle> Login with Google</Button>
+            <h4 className='text-start mb-4'>Login With</h4>
+            <div className='mb-3 w-auto'>
+                <Button className='mb-2 w-full' variant="outline-secondary"><FaGoogle></FaGoogle> Login with Google</Button>
                 <Button variant="outline-secondary"><FaGithub></FaGithub> Login with GitHub</Button>
             </div>
-            <div className='mb-3'>
+            <div className='mb-3 text-start'>
                 <h4>Find Us</h4>
                 <ListGroup>
                     <ListGroup.Item>
