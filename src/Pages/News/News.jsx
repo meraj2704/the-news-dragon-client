@@ -18,7 +18,7 @@ const News = () => {
                         {details}
                     </Card.Text>
                     <Container className='text-start ps-0'>
-                        <Link to={`/category/${category_id}`} ><Button variant="danger">All news ins this category</Button></Link></Container>
+                        <Link to={`/categories/${category_id}`} ><Button variant="danger">All news ins this category</Button></Link></Container>
                 </Card.Body>
             </Card>
            <div className='mt-4'>
