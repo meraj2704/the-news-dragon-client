@@ -6,7 +6,7 @@ import NavigationBar from '../Shared/NavigationBar';
 const Login = () => {
     return (
         <div>
-            <NavigationBar></NavigationBar>
+            {/* <NavigationBar></NavigationBar> */}
             <Container>
                 <Row className="justify-content-center mt-5">
                     <Col md={6}>
