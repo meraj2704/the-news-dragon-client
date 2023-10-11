@@ -26,8 +26,8 @@ const NavigationBar = () => {
                                 </div>
                                 :
                                 <div>
-                                    <Link to= 'login'><Button  variant="secondary">Login</Button></Link>
-                                    <Link to='register'><Button className='ms-3' variant="secondary">Register</Button></Link>
+                                    <Link to= '/login'><Button  variant="secondary">Login</Button></Link>
+                                    <Link to='/register'><Button className='ms-3' variant="secondary">Register</Button></Link>
                                 </div>
                             }
                         </Nav>

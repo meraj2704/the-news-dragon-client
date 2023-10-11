@@ -1,20 +1,53 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import Header from '../Shared/Header';
 import NavigationBar from '../Shared/NavigationBar';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
-    const handleCreateUser = event =>{
+    const [success, setSuccess] = useState('');
+    const [error, setError] = useState('');
+
+    const { createUser,updateUserProfile} = useContext(AuthContext)
+    const handleCreateUser = event => {
         event.preventDefault();
         const form = event.target;
         const firstName = form.firstName.value;
         const lastName = form.lastName.value;
+        const mainName = firstName+ " " +lastName;
         const email = form.email.value;
+        const url = form.photoUrl.value;
         const userName = form.userName.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
+        console.log(mainName, email, userName, password, confirmPassword);
+        setError('');
+        setSuccess('');
+        if (password === confirmPassword) {
+            createUser(email, password)
+                .then(result => {
+                    const createdUser = result.user;
+                    console.log(createdUser)
+                    setSuccess("Successfully registered account");
+                })
+                .catch(error => {
+                    console.log(error.message)
+                })
+                updateUserProfile(mainName,url)
+                .then(result =>{
+                    const user = result.user;
+                    console.log(user);
+                })
+                .catch(error =>{
+                    console.log(error.message)
+                })
 
-        console.log(firstName,lastName,email,userName,password,confirmPassword);
+        }
+        else {
+            setError("Password not matching.")
+        }
+
+        console.log(firstName, lastName, email, userName, password, confirmPassword);
     }
     return (
         <div>
@@ -37,6 +70,10 @@ const Login = () => {
                                         <Form.Control type="text" name="lastName" placeholder="Last name" />
                                     </Form.Group>
                                     <Form.Group>
+                                        <Form.Label>Photo url:</Form.Label>
+                                        <Form.Control type="text" name="photoUrl" placeholder="Photo Url" />
+                                    </Form.Group>
+                                    <Form.Group>
                                         <Form.Label>Email:</Form.Label>
                                         <Form.Control type="email" name="email" placeholder="Email" />
                                     </Form.Group>
@@ -52,9 +89,16 @@ const Login = () => {
                                         <Form.Label>Confirm Password:</Form.Label>
                                         <Form.Control type="password" name="confirmPassword" placeholder="Password" />
                                     </Form.Group>
-                                    <Button variant="primary" type="submit" block>
+                                    <Button className='mt-2' variant="primary" type="submit" block>
                                         Login
                                     </Button>
+                                    {
+                                        error && <p className='text-danger'>{error}</p>
+                                        
+                                    }
+                                    {
+                                        success && <p className='text-success'>{success}</p>
+                                    }
                                 </Form>
                             </Card.Body>
                         </Card>

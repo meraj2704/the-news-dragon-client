@@ -35,14 +35,6 @@ const router = createBrowserRouter([
                 path: ':id',
                 element: <Category></Category>,
                 loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
-            },
-            {
-                path: 'login',
-                element: <Login></Login>
-            },
-            {
-                path: 'register',
-                element: <Register></Register>
             }
 
         ]
@@ -58,11 +50,8 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
             }
         ]
-    },
-    {
-        path: 'profile',
-        element: <Profile></Profile>
     }
+    
 ])
 
 export default router;

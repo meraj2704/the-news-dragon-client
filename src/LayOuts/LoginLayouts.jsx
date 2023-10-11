@@ -8,8 +8,8 @@ import NavigationBar from '../Pages/Shared/NavigationBar';
 const LoginLayouts = () => {
     return (
         <div>
-           <NavigationBar></NavigationBar>
-           <Login></Login>
+            <NavigationBar></NavigationBar>
+            <Outlet></Outlet>
         </div>
     );
 };
