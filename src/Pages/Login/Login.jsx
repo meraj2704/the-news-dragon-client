@@ -4,13 +4,15 @@ import Header from '../Shared/Header';
 import NavigationBar from '../Shared/NavigationBar';
 import AuthProvider, { AuthContext } from '../../Providers/AuthProvider';
 import { Result } from 'postcss';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const navigate = useNavigate();
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const { signIn } = useContext(AuthContext);
+    const location = useLocation();
+     const from = location.state?.from?.pathname || '/categories/0';
     const handleSignIn = event => {
         event.preventDefault();
         const form = event.target;
@@ -23,12 +25,13 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                navigate(from, {replace:true});
                 setSuccess("Successfully login account");
             })
             .catch(error => {
                 console.log(error.message);
             })
-            navigate("/categories/0");
+            
     }
     return (
         <div>
