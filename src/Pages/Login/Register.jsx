@@ -3,11 +3,12 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import Header from '../Shared/Header';
 import NavigationBar from '../Shared/NavigationBar';
 import { AuthContext } from '../../Providers/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
+    const [checked,setChecked]  = useState(false);
     const navigate = useNavigate();
 
     const { createUser,updateUserProfile} = useContext(AuthContext)
@@ -53,6 +54,10 @@ const Login = () => {
 
         console.log(firstName, lastName, email, userName, password, confirmPassword);
     }
+    const handleChecked = event =>{
+        setChecked(event.target.checked);
+        console.log(checked);
+    }
     return (
         <div>
             {/* <NavigationBar></NavigationBar> */}
@@ -93,7 +98,11 @@ const Login = () => {
                                         <Form.Label>Confirm Password:</Form.Label>
                                         <Form.Control type="password" name="confirmPassword" placeholder="Password" />
                                     </Form.Group>
-                                    <Button className='mt-2' variant="primary" type="submit" block>
+                                    <Form.Group onClick={handleChecked}>
+                                        
+                                        <Form.Check className='ps-0 text-start' type="checkbox" name="accept" label={<><p>Accept <Link to='/terms'>Terms and conditions</Link></p></>} />
+                                    </Form.Group>
+                                    <Button className='mt-2' disabled={!checked} variant="primary" type="submit" block>
                                         Submit
                                     </Button>
                                     {
