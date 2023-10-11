@@ -3,10 +3,12 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import Header from '../Shared/Header';
 import NavigationBar from '../Shared/NavigationBar';
 import { AuthContext } from '../../Providers/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const { createUser,updateUserProfile} = useContext(AuthContext)
     const handleCreateUser = event => {
@@ -33,6 +35,7 @@ const Login = () => {
                 .catch(error => {
                     console.log(error.message)
                 })
+
                 updateUserProfile(mainName,url)
                 .then(result =>{
                     const user = result.user;
@@ -41,6 +44,7 @@ const Login = () => {
                 .catch(error =>{
                     console.log(error.message)
                 })
+                navigate("/categories/0");
 
         }
         else {
@@ -90,7 +94,7 @@ const Login = () => {
                                         <Form.Control type="password" name="confirmPassword" placeholder="Password" />
                                     </Form.Group>
                                     <Button className='mt-2' variant="primary" type="submit" block>
-                                        Login
+                                        Submit
                                     </Button>
                                     {
                                         error && <p className='text-danger'>{error}</p>

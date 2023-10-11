@@ -4,8 +4,10 @@ import Header from '../Shared/Header';
 import NavigationBar from '../Shared/NavigationBar';
 import AuthProvider, { AuthContext } from '../../Providers/AuthProvider';
 import { Result } from 'postcss';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const { signIn } = useContext(AuthContext);
@@ -26,6 +28,7 @@ const Login = () => {
             .catch(error => {
                 console.log(error.message);
             })
+            navigate("/categories/0");
     }
     return (
         <div>
