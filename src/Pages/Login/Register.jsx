@@ -4,13 +4,14 @@ import Header from '../Shared/Header';
 import NavigationBar from '../Shared/NavigationBar';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
+import useTitle from '../../Hook/hook';
 
 const Login = () => {
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const [checked,setChecked]  = useState(false);
     const navigate = useNavigate();
-
+    useTitle('Register')
     const { createUser,updateUserProfile} = useContext(AuthContext)
     const handleCreateUser = event => {
         event.preventDefault();

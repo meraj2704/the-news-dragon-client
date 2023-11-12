@@ -5,6 +5,8 @@ import NavigationBar from '../Shared/NavigationBar';
 import AuthProvider, { AuthContext } from '../../Providers/AuthProvider';
 import { Result } from 'postcss';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useTitle from '../../Hook/hook';
+
 
 const Login = () => {
     const navigate = useNavigate();
@@ -12,6 +14,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const { signIn } = useContext(AuthContext);
     const location = useLocation();
+    useTitle('Login');
      const from = location.state?.from?.pathname || '/categories/0';
     const handleSignIn = event => {
         event.preventDefault();
